@@ -4,7 +4,11 @@
      <td><%= task.name %></td>
      <td><%= link_to 'Show', task_path(task) %></td>
      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-     <td><%= link_to 'Destroy', task_path(task), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+     <% if Date.today <= task.due_date %>
+      <td><%= link_to 'Destroy', task_path(task), method: :delete, data:{ confirm: "Are you sure?" } %></td>
+     <% else %>
+      <td>Expired</td>
+     <% end %>
    </tr>
  <% end %>
 </table>
